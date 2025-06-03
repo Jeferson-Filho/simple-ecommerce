@@ -108,8 +108,7 @@ python manage.py runserver
 ### 3. Product Management
 - [ ] Product modeling (name, description, price, store, image)  
 - [ ] CRUD operations via admin  
-- [ ] Store updates  
-- [ ] Product listing and filtering by category  
+- [ ] Store updates
 - [ ] Product detail page
 
 
@@ -121,51 +120,38 @@ python manage.py runserver
 
 
 ### 5. Shipping and Address Management
-- [ ] Register and edit delivery addresses  
-- [ ] Freight calculation (flat or based on CEP code range)
+- [ ] Register and edit delivery addresses
+- [ ] Freight calculation (flat or based on CEP code range) (optional)
 
 
 ### 6. Payment Simulation
-- [ ] Payment simulation (credit card, bank slip, etc.)  
 - [ ] Order status updates  
 - [ ] Payment receipt generation
+- [ ] Payment simulation (credit card, bank slip, etc.) (optional)
 
 
 ### 7. Blog and Posts
 - [ ] CRUD for posts (admin and users)  
-- [ ] Blog post listing  
 - [ ] Post detail page  
 - [ ] Edit and delete posts
 
 
 ### 8. Product Catalog and Search
-- [ ] Filter products by category and price range  
-- [ ] Search field for name/description  
+- [ ] Sorting  products by name or price
+- [ ] Search field for name 
 - [ ] Dynamic results display
 
 
 ### 9. Admin Dashboard
-- [ ] Overview of metrics (sales, products, orders)  
-- [ ] Order listing and status updates  
-- [ ] Manage users and blog posts
-
+- [ ] Update list of store
+- [ ] Update list of products
+- [ ] Create posts and produts
 
 ### 10. Frontend and UI
 - [ ] Layout using pure HTML, CSS, and JS  
 - [ ] Reusable components (header, footer, cards)  
 - [ ] Responsive design for mobile/tablet  
 - [ ] JavaScript interactivity (modals, validation, dynamic cart)
-
-
-### 11. Testing and Improvements
-- [ ] Full system flow testing  
-- [ ] Bug fixes and UI polishing  
-- [ ] Usability testing
-
-
-### 12. Documentation and Delivery
-- [ ] Create README with installation and usage instructions  
-- [ ] Register useful commands (`migrate`, `createsuperuser`, `runserver`)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
