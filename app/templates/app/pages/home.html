@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-
-<html>
-    <head><link rel="stylesheet" href="/static/css/style.css"></head>
-    <body><h1>Home Page</h1></body>
-</html>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('Home page loaded');
-  });
-</script>
+{% extends 'base.html' %} {% block title %}Tua - Home{% endblock %} {% block
+content %}
+<div class="carousel">
+  <div class="slides">
+    {% for image in images %}
+    <img src="{{ image }}" alt="Slide {{ forloop.counter }}" />
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
