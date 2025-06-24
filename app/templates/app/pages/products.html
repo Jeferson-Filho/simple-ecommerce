@@ -1,12 +1,37 @@
-<!DOCTYPE html>
+{% extends 'base.html' %} {% block title %}Produtos{% endblock %} {% block
+content %}
+<h2 style="text-align: center; margin-top: 20px">Produtos</h2>
 
-<html>
-    <head><link rel="stylesheet" href="/static/css/style.css"></head>
-    <body><h1>Products Page</h1></body>
-</html>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('Products page loaded');
-  });
-</script>
+<div
+  style="
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  "
+>
+  {% for product in products %}
+  <div
+    style="
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 250px;
+      padding: 15px;
+      text-align: center;
+    "
+  >
+    <img
+      src="{{ product.media }}"
+      alt="{{ product.name }}"
+      style="width: 100%; height: auto; border-radius: 8px"
+    />
+    <h3>{{ product.name }}</h3>
+    <p style="font-size: 14px">{{ product.description }}</p>
+    <strong>R$ {{ product.value }}</strong>
+  </div>
+  {% empty %}
+  <p>Nenhum produto encontrado.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% block title %}{{ produto.nome }}{% endblock %} {%
+block content %}
+<div style="display: flex; justify-content: center; gap: 40px; margin: 50px">
+  <div>
+    <img
+      src="{{ product.media }}"
+      alt="{{ product.name }}"
+      style="max-width: 300px; border: 1px solid #000"
+    />
+  </div>
+
+  <div>
+    <h2 style="margin-bottom: 20px">{{ product.name }}</h2>
+
+    {% if product.storage > 0 %}
+    <form method="post">
+      {% csrf_token %}
+      <label>QUANTIDADE:</label><br />
+      <select
+        name="quantidade"
+        style="padding: 5px; width: 100px; margin-bottom: 15px"
+      >
+        {% for quantity in product.storage %}
+        <option value="{{ quantity }}">{{ quantity }}</option>
+        {% endfor %}</select
+      ><br />
+
+      <p><strong>VALOR UNITÁRIO:</strong> R$ {{ product.value }}</p>
+      <p><strong>📦 FRETE:</strong> R$ {{ frete }}</p>
+      <p>
+        <strong>VALOR FINAL:</strong>
+        <span id="valor-final">R$ {{ product.value }}</span>
+      </p>
+
+      <button
+        style="
+          background: black;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          font-weight: bold;
+        "
+      >
+        ADICIONAR AO CARRINHO
+      </button>
+    </form>
+    {% else %}
+    <p style="color: red; font-weight: bold">ESGOTADO</p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  const select = document.querySelector("select[name='quantidade']");
+  const valorFinal = document.getElementById("valor-final");
+  const frete = 10.0;
+
+  select?.addEventListener("change", () => {
+    const quantidade = parseInt(select.value);
+    const total = (product.value * quantidade + frete).toFixed(2);
+    valorFinal.textContent = "R$ " + total.replace(".", ",");
+  });
+</script>
+{% endblock %}
