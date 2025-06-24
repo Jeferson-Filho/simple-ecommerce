@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    # TODO Jeff - modularizar
+    # bootstrap5
+    # rest_framework
 ]
 
 MIDDLEWARE = [

@@ -3,14 +3,14 @@ from .models import Product
 
 # Create your views here.
 def home(request):
-    return render(request, 'app/templates/home.html')
+    return render(request, 'app/pages/home.html')
 
 def products(request):
     products = Product.objects.all()
-    return render(request, 'app/templates/products.html', {'products': products})
+    return render(request, 'app/pages/products.html', {'products': products})
 
 def produtDetail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'app/templates/productDetail.html', {
+    return render(request, 'app/pages/productDetail.html', {
         'product' : product,
     })
