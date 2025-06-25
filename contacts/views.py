@@ -1,3 +1,31 @@
+from django.core.mail import send_mail
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .forms import ContactForm
 
-# Create your views here.
+@login_required
+def contact(request):
+    success = False
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            user = request.user
+            subject = f'Contato via site - {user.username}'
+            body = f'Usuário: {user.get_full_name()} ({user.email})\n\nMensagem:\n{message}'
+
+            send_mail(
+                subject=subject,
+                message=body,
+                from_email=None,
+                recipient_list=['suporte@fake.com.br'],  # altere para o e-mail de destino
+                fail_silently=False,
+            )
+
+            success = True
+            form = ContactForm()  # limpa o formulário
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form, 'success': success})

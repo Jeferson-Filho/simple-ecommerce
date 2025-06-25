@@ -17,7 +17,7 @@
       {% csrf_token %}
       <label>QUANTIDADE:</label><br />
       <select
-        name="quantidade"
+        name="quantity"
         style="padding: 5px; width: 100px; margin-bottom: 15px"
       >
         {% for quantity in product.storage %}
@@ -51,13 +51,13 @@
 </div>
 
 <script>
-  const select = document.querySelector("select[name='quantidade']");
+  const select = document.querySelector("select[name='quantity']");
   const valorFinal = document.getElementById("valor-final");
   const frete = 10.0;
 
   select?.addEventListener("change", () => {
-    const quantidade = parseInt(select.value);
-    const total = (product.value * quantidade + frete).toFixed(2);
+    const quantity = parseInt(select.value);
+    const total = (product.value * quantity + frete).toFixed(2);
     valorFinal.textContent = "R$ " + total.replace(".", ",");
   });
 </script>

@@ -1,0 +1,13 @@
+{% extends 'app/pages/base.html' %}
+{% block title %}Novo Post{% endblock %}
+
+{% block content %}
+<div style="max-width:800px; margin:40px auto;">
+    <h2>Criar Nova Notícia</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="padding:10px 20px; background:black; color:white;">Publicar</button>
+    </form>
+</div>
+{% endblock %}

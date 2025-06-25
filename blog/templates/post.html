@@ -1,0 +1,20 @@
+{% extends 'app/pages/base.html' %}
+
+{% block title %}{{ post.name }}{% endblock %}
+
+{% block content %}
+<div style="max-width:800px; margin:40px auto; padding:20px;">
+
+    <h1 style="margin-bottom:10px;">{{ post.name }}</h1>
+    <small style="color:gray;">Publicado em {{ post.post_date|date:"d/m/Y H:i" }}</small>
+
+    {% if post.media %}
+        <img src="{{ post.media }}" alt="{{ post.name }}" style="width:100%; margin:20px 0; border-radius:8px;">
+    {% endif %}
+
+    <div style="margin-top:20px; font-size:17px; line-height:1.6;">
+        {{ post.description|safe }}
+    </div>
+
+</div>
+{% endblock %}

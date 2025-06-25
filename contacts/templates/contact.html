@@ -1,0 +1,39 @@
+{% extends 'app/pages/base.html' %}
+{% block title %}Contato{% endblock %}
+
+{% block content %}
+<div style="max-width:700px; margin:50px auto; text-align:center;">
+
+    <h1 style="font-size:38px; font-weight:bold;">CONTATO</h1>
+    <p style="font-size:14px; font-weight:600; margin-top:10px; margin-bottom:30px;">
+        ÁREA DESTINADA APENAS PARA RECLAMAÇÕES, PEDIDOS DE AJUDA, DÚVIDAS E RECOMENDAÇÕES.
+    </p>
+
+    {% if sucesso %}
+        <p style="color:green; font-weight:bold;">Mensagem enviada com sucesso!</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div style="display:flex; align-items:center; gap:10px; font-size:12px; color:black; margin:15px 0;">
+            ⚠️ <span>ATENÇÃO: É NECESSÁRIO ESTAR LOGADO PARA ENTRAR EM CONTATO COM A EQUIPE TUA</span>
+        </div>
+
+        <button type="submit" style="
+            background: linear-gradient(to right, #ffd700, #f5c000);
+            border: none;
+            border-radius: 30px;
+            padding: 10px 40px;
+            color: black;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            ">
+            ENVIAR
+        </button>
+    </form>
+</div>
+{% endblock %}
