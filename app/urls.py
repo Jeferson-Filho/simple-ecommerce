@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from products.views import products, productDetail
 from blog.views import news, post, create_post
-from contacts import contact
+from contacts.views import contact
 
 urlpatterns = [
     path('', views.home, name='home'),

@@ -1,7 +1,7 @@
 from django import forms
 
 class ContactForm(forms.Form):
-    mensagem = forms.CharField(
+    message = forms.CharField(
         label='',
         widget=forms.Textarea(attrs={
             'placeholder': '*Digite sua mensagem...',

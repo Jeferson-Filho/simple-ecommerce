@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import ContactForm
 
-@login_required
+# @login_required
 def contact(request):
     success = False
 
@@ -13,7 +13,7 @@ def contact(request):
             message = form.cleaned_data['message']
             user = request.user
             subject = f'Contato via site - {user.username}'
-            body = f'Usuário: {user.get_full_name()} ({user.email})\n\nMensagem:\n{message}'
+            body = f'Usuário: {user.get_username()} ({user.email})\n\nMensagem:\n{message}'
 
             send_mail(
                 subject=subject,
