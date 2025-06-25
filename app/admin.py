@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from app.models import User
+from user.models import User
     
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

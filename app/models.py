@@ -1,8 +1,10 @@
 from django.db import models
-from products.models import Product
 
 # Create your models here.
 # app/models.py
+
+from django.db import models
+
 
 class User(models.Model):
     username = models.CharField(max_length=150, unique=True, null=False, blank=False)
@@ -44,6 +46,14 @@ class CreditCard(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     validate = models.DateField(null=False, blank=False)
     security_code = models.CharField(max_length=10, null=False, blank=False)
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False)
+    value = models.FloatField(null=False, blank=False)
+    description = models.TextField(null=True, blank=True)
+    media = models.TextField(null=True, blank=True)
+    storage = models.IntegerField(null=True, blank=True)
 
 
 class PaymentDetails(models.Model):
