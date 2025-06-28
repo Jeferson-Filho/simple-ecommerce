@@ -3,6 +3,7 @@ from . import views
 from products.views import products, productDetail
 from blog.views import news, post, create_post
 from contacts.views import contact
+from user.views import register
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -12,5 +13,6 @@ urlpatterns = [
     path('news/<int:noticia_id>/', post, name='post'),
     path('news/create/', create_post, name='createPost'),
     path('contact/', contact, name='contact'),
+    path('register/', register, name='register'),
 
 ]
