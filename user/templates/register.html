@@ -62,6 +62,22 @@
     .cadastro-container button:hover {
       background: #e6c200;
     }
+
+    .tipo-doc-radio-group {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      margin-bottom: 8px;
+      margin-top: 5px;
+    }
+    .tipo-doc-radio-group label {
+      font-weight: normal;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -71,11 +87,79 @@
 
     <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+      <label for="id_username">Usuário</label>
+      {{ form.username }}
+
+      <label for="id_email">E-mail</label>
+      {{ form.email }}
+
+      <label>Tipo de Documento</label>
+      <div class="tipo-doc-radio-group">
+        <label>
+          <input type="radio" name="tipo_doc" value="cpf" checked> CPF
+        </label>
+        <label>
+          <input type="radio" name="tipo_doc" value="cnpj"> CNPJ
+        </label>
+      </div>
+      {{ form.document }}
+      <small id="tipo-documento" style="display:block;margin-bottom:5px;color:#888;font-size:11px;"></small>
+
+      <label for="id_phone">Telefone</label>
+      {{ form.phone }}
+
+      <label for="id_user_type">Tipo de Usuário</label>
+      {{ form.user_type }}
+
+      <label for="id_password">Senha</label>
+      {{ form.password }}
 
       <button type="submit">CADASTRAR</button>
     </form>
   </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#id_phone').mask('(00) 00000-0000');
+
+    function setUserType(tipo) {
+      if (tipo === 'cpf') {
+        $('#id_user_type').val('Pessoa Física');
+      } else {
+        $('#id_user_type').val('Pessoa Jurídica');
+      }
+    }
+
+    setUserType('cpf');
+
+    $('input[name="tipo_doc"]').change(function() {
+      setUserType($(this).val());
+    });
+
+    $('#id_user_type').prop('readonly', true).css({'background':'#f5f5f5','pointer-events':'none'});
+
+    function setDocMask(tipo) {
+      if (tipo === 'cpf') {
+        $('#id_document').mask('000.000.000-00');
+        $('#tipo-documento').text('Digite um CPF válido');
+      } else {
+        $('#id_document').mask('00.000.000/0000-00');
+        $('#tipo-documento').text('Digite um CNPJ válido');
+      }
+      $('#id_document').val('');
+    }
+
+    setDocMask('cpf');
+    $('input[name="tipo_doc"]').change(function() {
+      setDocMask($(this).val());
+    });
+
+    $('#id_document').on('input', function() {
+      $('#tipo-documento').text('');
+    });
+  });
+</script>
 </body>
 </html>

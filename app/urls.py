@@ -1,6 +1,6 @@
 from django.urls import include, path
 from . import views
-from products.views import products, productDetail
+from products.views import products, productDetail, productCreate
 from blog.views import news, post, create_post
 from contacts.views import contact
 from user.views import profile, register
@@ -18,6 +18,7 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('profile/', profile, name='profile'),
+    path('cadastrar-produto/', productCreate, name='productCreate'),
 ]
 
 if settings.DEBUG:
