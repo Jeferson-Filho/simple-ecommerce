@@ -1,0 +1,71 @@
+{% extends 'app/pages/base.html' %} {% block title %}{{ produto.nome }}{%endblock %} 
+{% block content %}
+<div style="display: flex; justify-content: center; gap: 40px; margin: 50px">
+  <div>
+    <img
+      src="{{ product.media.url }}"
+      alt="{{ product.name }}"
+      style="width: 100%; max-width: 400px; height: auto; border: 1px solid #000; display: block; margin: 0 auto;"
+    />
+  </div>
+
+  <div>
+    <h2 style="margin-bottom: 20px">{{ product.name }}</h2>
+    <p style="font-size: 16px; margin-bottom: 20px; color: #444; max-width: 350px; word-break: break-word;">{{ product.description }}</p>
+
+    {% if product.storage > 0 %}
+      <form method="post">
+        {% csrf_token %}
+        <label>QUANTIDADE:</label><br />
+        <select
+          name="quantity"
+          style="padding: 5px; width: 100px; margin-bottom: 15px"
+        >
+          {% for i in range %}
+            <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+        </select><br />
+
+        <p><strong>VALOR UNITÁRIO:</strong> R$ {{ product.value|floatformat:2 }}</p>
+        <p><strong>FRETE:</strong> R$ {{ frete|floatformat:2 }}</p>
+        <p>
+          <strong>VALOR FINAL:</strong>
+          <span id="valor-final">R$ {{ product.value|floatformat:2 }}</span>
+        </p>
+
+        <button
+          style="
+            background: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+          "
+        >
+          ADICIONAR AO CARRINHO
+        </button>
+      </form>
+    {% else %}
+    <p style="color: red; font-weight: bold">ESGOTADO</p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  const select = document.querySelector("select[name='quantity']");
+  const valorFinal = document.getElementById("valor-final");
+  const frete = parseFloat("{{ frete|floatformat:2 }}".replace(",", "."));
+  const valorUnitario = parseFloat("{{ product.value|floatformat:2 }}".replace(",", "."));
+
+  function atualizarValorFinal() {
+    const quantity = parseInt(select.value);
+    const total = (valorUnitario * quantity + frete).toFixed(2);
+    valorFinal.textContent = "R$ " + total.replace(".", ",");
+  }
+
+  if (select && valorFinal) {
+    select.addEventListener("change", atualizarValorFinal);
+    atualizarValorFinal();
+  }
+</script>
+{% endblock %}

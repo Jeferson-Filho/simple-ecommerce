@@ -9,6 +9,8 @@ def products(request):
     
 def productDetail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'app/pages/productDetail.html', {
-        'product' : product,
+    return render(request, 'products/productDetail.html', {
+        'product': product,
+        'range': range(1, product.storage + 1),
+        'frete': 10.0,
     })
