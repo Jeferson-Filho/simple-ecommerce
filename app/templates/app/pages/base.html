@@ -2,13 +2,40 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <style></style>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+        width: 100%;
+      }
+      .top-menu {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .footer {
+        width: 100%;
+        flex-shrink: 0;
+      }
+    </style>
   </head>
   <body>
-    {% include 'app/pages/topMenu.html' %}
+    <div class="top-menu">{% include 'app/pages/topMenu.html' %}</div>
 
     <main>{% block content %}{% endblock %}</main>
 
-    {% include 'app/pages/footer.html' %}
+    <div class="footer">{% include 'app/pages/footer.html' %}</div>
   </body>
 </html>
