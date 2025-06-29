@@ -17,16 +17,15 @@
 
       <div class="dropdown" id="profileDropdown">
         {% if user.is_authenticated %}
-          <div style="text-align: left;">
-            <p style="margin-bottom: 10px;">Olá, {{ user.username }}!</p>
-            {% if user.is_staff %}
-              <a href="{% url 'productCreate' %}">Cadastrar produtos</a>
-            {% endif %}
-            <a href="{% url 'logout' %}">Sair</a>
-            <a href="{% url 'profile' %}">Meu Perfil</a>
-          </div>
+          <p style="margin-bottom: 10px;">Olá, {{ user.username }}!</p>
+          {% if user.is_staff %}
+            <a href="{% url 'productCreate' %}">Cadastrar produtos</a>
+          {% endif %}
+          <a href="{% url 'cart' %}">Ver Carrinho</a>
+          <a href="{% url 'profile' %}">Meu Perfil</a>
+          <a href="{% url 'logout' %}?next={{ request.path }}">Sair</a>
         {% else %}
-          <form method="post" action="{% url 'login' %}">
+          <form method="post" action="">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
             <input type="text" name="username" placeholder="Usuário" required>
@@ -39,6 +38,14 @@
     </div>
   </div>
 </nav>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
 <script>
   const btn = document.getElementById("profileBtn");

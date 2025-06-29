@@ -9,8 +9,8 @@
   </div>
   <div class="carousel">
     <div class="slides">
-      {% for image in images %}
-      <img src="{{ image }}" alt="Slide {{ forloop.counter }}" class="slide-img" style="display: {% if forloop.first %}block{% else %}none{% endif %};" />
+      {% for product in products %}
+        <img src="{{ product.media.url }}" alt="{{ product.name }}" class="slide-img" style="display: {% if forloop.first %}block{% else %}none{% endif %};" />
       {% endfor %}
     </div>
     <div class="carousel-controls">

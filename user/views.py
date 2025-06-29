@@ -8,8 +8,7 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            from django.contrib.auth.hashers import make_password
-            user.password = make_password(form.cleaned_data['password'])
+            user.password = form.cleaned_data['password']
             user.level = 'Cliente'
             user.save()
             from django.contrib.auth.models import User as AuthUser
@@ -17,7 +16,7 @@ def register(request):
                 AuthUser.objects.create_user(
                     username=user.username,
                     email=user.email,
-                    password=make_password(form.cleaned_data['password'])
+                    password=form.cleaned_data['password']
                 )
             return redirect('home')
     else:

@@ -19,6 +19,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('profile/', profile, name='profile'),
     path('cadastrar-produto/', productCreate, name='productCreate'),
+    path('carrinho/', include('cart.urls')),
 ]
 
 if settings.DEBUG:

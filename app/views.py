@@ -11,9 +11,9 @@ def home(request):
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+        if user is not None and user.is_active:
             login(request, user)
-            next_url = request.POST.get("next") or "/"
+            next_url = request.POST.get("next") or request.path or "/"
             return redirect(next_url)
         else:
             messages.error(request, "Usuário ou senha inválidos.")
