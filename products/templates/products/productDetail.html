@@ -16,6 +16,15 @@
     {% if product.storage > 0 %}
       <form method="post">
         {% csrf_token %}
+        {% if messages %}
+          <div style="color: #155724; background: #d4edda; border: 1px solid #c3e6cb; padding: 8px 10px; border-radius: 5px; margin-bottom: 10px; font-size: 13px;">
+            <ul style="margin:0; padding-left: 18px;">
+              {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
         <label>QUANTIDADE:</label><br />
         <select
           name="quantity"
@@ -40,7 +49,9 @@
             padding: 10px 20px;
             border: none;
             font-weight: bold;
+            cursor: pointer;
           "
+          type="submit"
         >
           ADICIONAR AO CARRINHO
         </button>

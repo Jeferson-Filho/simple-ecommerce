@@ -27,6 +27,15 @@
         {% else %}
           <form method="post" action="">
             {% csrf_token %}
+            {% if messages %}
+              <div style="color: #b30000; background: #ffeaea; border: 1px solid #ffb3b3; padding: 8px 10px; border-radius: 5px; margin-bottom: 10px; font-size: 13px;">
+                <ul style="margin:0; padding-left: 18px;">
+                  {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
             <input type="hidden" name="next" value="{{ request.path }}">
             <input type="text" name="username" placeholder="Usuário" required>
             <input type="password" name="password" placeholder="Senha" required>
@@ -38,14 +47,6 @@
     </div>
   </div>
 </nav>
-
-{% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
 
 <script>
   const btn = document.getElementById("profileBtn");

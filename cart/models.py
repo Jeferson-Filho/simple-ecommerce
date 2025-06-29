@@ -16,7 +16,9 @@ class PaymentDetails(models.Model):
 
 
 class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
     total = models.FloatField(null=False, blank=False)
+    is_active = models.BooleanField(default=True)
 
 
 class CartProduct(models.Model):
