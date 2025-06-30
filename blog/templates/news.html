@@ -13,7 +13,7 @@
         {% endif %}
         <h3 style="margin-top:15px;">{{ post.name }}</h3>
         <small style="color:gray;">Publicado em {{ post.post_date|date:"d/m/Y H:i" }}</small>
-        <a href="#" style="color:#007BFF; text-decoration:none;">Leia mais</a>
+        <a href="{% url 'post' post.id %}" style="color:#007BFF; text-decoration:none;">Leia mais</a>
     </div>
     {% empty %}
     <p>Nenhuma notícia encontrada.</p>

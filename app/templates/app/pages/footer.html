@@ -52,7 +52,9 @@
 <footer>
   <div class="footer-content">
     <span>© 2025</span>
-    <img src="{% static 'images/logo.png' %}" alt="LOGO" class="footer-logo">
+    <a href="{% url 'home' %}">
+      <img src="{% static 'images/logo.png' %}" alt="LOGO" class="footer-logo">
+    </a>
     <a href="{% url 'contact' %}">Contato</a>
   </div>
 </footer>

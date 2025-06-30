@@ -2,6 +2,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import ContactForm
+from django.conf import settings
 
 # @login_required
 def contact(request):
@@ -14,12 +15,13 @@ def contact(request):
             user = request.user
             subject = f'Contato via site - {user.username}'
             body = f'Usuário: {user.get_username()} ({user.email})\n\nMensagem:\n{message}'
+            destination_email = request.user.email
 
             send_mail(
                 subject=subject,
                 message=body,
-                from_email=None,
-                recipient_list=['suporte@fake.com.br'],  # altere para o e-mail de destino
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[destination_email],
                 fail_silently=False,
             )
 

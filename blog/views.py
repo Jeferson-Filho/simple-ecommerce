@@ -4,7 +4,7 @@ from .forms import PostForm
 
 # Create your views here.
 def news(request):
-    news = Post.objects.order_by('post_date')  # Mais recentes primeiro
+    news = Post.objects.order_by('post_date')
     return render(request, 'news.html', {'news': news})
 
 def post(request, post_id):
@@ -13,10 +13,10 @@ def post(request, post_id):
 
 def create_post(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('news')  # Redirecionar para listagem após salvar
+            return redirect('news')
     else:
         form = PostForm()
     return render(request, 'createPost.html', {'form': form})
