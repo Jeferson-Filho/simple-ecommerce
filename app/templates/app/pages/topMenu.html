@@ -1,3 +1,4 @@
+{% load static %}
 <nav>
   <div class="nav-left">
     <a href="{% url 'products' %}">Produtos</a>
@@ -5,7 +6,7 @@
   </div>
 
   <div class="nav-center" style="flex:1; text-align:center;">
-    <span>LOGO</span>
+    <img src="{% static 'images/logo.png' %}" alt="Logo" style="height:36px;">
   </div>
 
   <div class="nav-right">
@@ -21,8 +22,10 @@
           {% if user.is_staff %}
             <a href="{% url 'productCreate' %}">Cadastrar produtos</a>
           {% endif %}
-          <a href="{% url 'cart' %}">Ver Carrinho</a>
           <a href="{% url 'profile' %}">Meu Perfil</a>
+          <a href="{% url 'address' %}">Meu Endereço</a>
+          <a href="{% url 'cart' %}">Meu Carrinho</a>
+          <a href="{% url 'orders' %}">Meus Pedidos</a>
           <a href="{% url 'logout' %}?next={{ request.path }}">Sair</a>
         {% else %}
           <form method="post" action="">

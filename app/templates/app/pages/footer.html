@@ -1,27 +1,58 @@
+{% load static %}
+
 <style>
   footer {
-    background-color: #333;
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
     color: #fff;
     text-align: center;
-    padding: 15px;
-    font-family: sans-serif;
-    font-size: 14px;
+    padding: 18px 0 12px 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+    border-top: 1.5px solid #222;
     position: relative;
-    bottom: 0;
     width: 100%;
+    z-index: 10;
+  }
+
+  footer .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  footer .footer-logo {
+    height: 28px;
+    vertical-align: middle;
+    margin: 0 10px 0 6px;
+    filter: drop-shadow(0 1px 2px #0008);
+    border-radius: 6px;
+    padding: 2px 6px;
+    box-shadow: 0 1px 4px #0002;
   }
 
   footer a {
     color: #ffd700;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    margin-left: 8px;
+    transition: color 0.2s;
+    letter-spacing: 0.5px;
   }
 
   footer a:hover {
+    color: #fffbe7;
     text-decoration: underline;
   }
 </style>
 
 <footer>
-  © 2025 LOGO | <a href="{% url 'contact' %}">Contact</a>
+  <div class="footer-content">
+    <span>© 2025</span>
+    <img src="{% static 'images/logo.png' %}" alt="LOGO" class="footer-logo">
+    <a href="{% url 'contact' %}">Contato</a>
+  </div>
 </footer>

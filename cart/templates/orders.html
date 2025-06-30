@@ -1,0 +1,38 @@
+{% extends 'app/pages/base.html' %}
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 40px auto;">
+  <h2 style="text-align:center; margin-bottom: 30px;">Meus Pedidos</h2>
+  {% if orders %}
+    <table style="width:100%; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+      <thead>
+        <tr style="background:#f5f5f5;">
+          <th style="padding:12px; text-align:left;">Pedido</th>
+          <th style="padding:12px; text-align:left;">Produtos</th>
+          <th style="padding:12px; text-align:right;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td style="padding:12px;">
+            <a href="{% url 'orderDetails' order.id %}" style="text-decoration:none; color:#007bff; font-weight:bold;">#{{ order.id }}</a>
+          </td>
+          <td style="padding:12px;">
+            <ul style="margin:0; padding-left:18px;">
+              {% for item in order.cart.cartproduct_set.all %}
+                <li>{{ item.product.name }} ({{ item.quantity }})</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td style="padding:12px; text-align:right;">
+            R$ {{ order.total|floatformat:2 }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="text-align:center; color:#888; font-size:18px;">Você ainda não fez nenhum pedido.</p>
+  {% endif %}
+</div>
+{% endblock %}

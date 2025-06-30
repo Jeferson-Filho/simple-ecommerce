@@ -1,0 +1,52 @@
+{% extends 'app/pages/base.html' %}
+{% block content %}
+<div class="container" style="max-width: 700px; margin: 40px auto;">
+  <h2 style="text-align:center; margin-bottom: 30px;">Detalhes do Pedido #{{ order.id }}</h2>
+  <div style="background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.08); padding:24px;">
+    <table style="width:100%; background:#f9f9f9; border-radius:8px; margin-bottom:20px;">
+      <thead>
+        <tr style="background:#f5f5f5;">
+          <th style="padding:10px; text-align:left;">Produto</th>
+          <th style="padding:10px; text-align:center;">Quantidade</th>
+          <th style="padding:10px; text-align:right;">Valor Unitário</th>
+          <th style="padding:10px; text-align:right;">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td style="padding:10px;">
+            <a href="{% url 'productDetail' item.product.id %}" style="color:#007bff; text-decoration:none;">{{ item.product.name }}</a>
+          </td>
+          <td style="padding:10px; text-align:center;">{{ item.quantity }}</td>
+          <td style="padding:10px; text-align:right;">R$ {{ item.product.value|floatformat:2 }}</td>
+          <td style="padding:10px; text-align:right;">R$ {{ item.subtotal|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr style="background:#f5f5f5; font-weight:bold;">
+          <td colspan="3" style="padding:10px; text-align:right;">Frete:</td>
+          <td style="padding:10px; text-align:right;">R$ 10,00</td>
+        </tr>
+        <tr style="background:#f5f5f5; font-weight:bold;">
+          <td colspan="3" style="padding:10px; text-align:right;">Total:</td>
+          <td style="padding:10px; text-align:right;">R$ {{ order.total|floatformat:2 }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <h4>Endereço de Entrega</h4>
+    <p>{{ order.shipping.address.street }}, {{ order.shipping.address.number }}<br>
+    {{ order.shipping.address.city }} - {{ order.shipping.address.state }}<br>
+    CEP: {{ order.shipping.address.zip_code }}</p>
+    <h4>Pagamento</h4>
+    <p>Tipo: {{ order.payment.payment_type }}</p>
+    {% if order.payment.card %}
+      <p>Cartão: **** **** **** {{ order.payment.card.last_digits }}</p>
+    {% endif %}
+  </div>
+  <div style="text-align:center; margin-top:24px;">
+    <a href="{% url 'orders' %}" class="btn btn-secondary">Voltar para pedidos</a>
+  </div>
+</div>
+{% endblock %}

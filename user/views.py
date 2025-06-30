@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import Address
 
 def register(request):
     if request.method == 'POST':
@@ -28,7 +29,6 @@ def register(request):
 def profile(request):
     user = request.user
     if request.method == 'POST':
-        # Atualiza os campos editáveis
         user.email = request.POST.get('email', user.email)
         if hasattr(user, 'cpf'):
             user.cpf = request.POST.get('cpf', user.cpf)
@@ -36,11 +36,9 @@ def profile(request):
             user.cnpj = request.POST.get('cnpj', user.cnpj)
         if hasattr(user, 'phone'):
             user.phone = request.POST.get('phone', user.phone)
-        # Se houver campo de nome completo customizado
         if hasattr(user, 'full_name'):
             user.full_name = request.POST.get('full_name', getattr(user, 'full_name', ''))
         elif hasattr(user, 'first_name') and hasattr(user, 'last_name'):
-            # Para auth_user padrão
             full_name = request.POST.get('full_name', '')
             if full_name:
                 parts = full_name.split(' ', 1)
@@ -50,3 +48,48 @@ def profile(request):
         messages.success(request, 'Dados atualizados com sucesso!')
         return redirect('profile')
     return render(request, 'user/profile.html')
+
+@login_required(login_url='/accounts/login/')
+def address(request):
+    user = request.user
+    from .models import User as CustomUser
+    custom_user = CustomUser.objects.get(username=user.username)
+    address = Address.objects.filter(email=custom_user).first()
+    if request.method == 'POST':
+        zip_code = request.POST.get('zip_code', '')
+        country = request.POST.get('country', '')
+        state = request.POST.get('state', '')
+        city = request.POST.get('city', '')
+        street = request.POST.get('street', '')
+        number = request.POST.get('number', '')
+        complement = request.POST.get('complement', '')
+        address_type = request.POST.get('address_type', '')
+        comment = request.POST.get('comment', '')
+        if address:
+            address.zip_code = zip_code
+            address.country = country
+            address.state = state
+            address.city = city
+            address.street = street
+            address.number = number
+            address.complement = complement
+            address.address_type = address_type
+            address.comment = comment
+            address.save()
+        else:
+            address = Address.objects.create(
+                email=custom_user,
+                zip_code=zip_code,
+                country=country,
+                state=state,
+                city=city,
+                street=street,
+                number=number,
+                complement=complement,
+                address_type=address_type,
+                comment=comment
+            )
+        from django.contrib import messages
+        messages.success(request, 'Endereço salvo com sucesso!')
+        return redirect('address')
+    return render(request, 'user/address.html', {'address': address})

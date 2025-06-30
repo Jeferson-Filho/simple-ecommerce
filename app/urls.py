@@ -3,7 +3,7 @@ from . import views
 from products.views import products, productDetail, productCreate
 from blog.views import news, post, create_post
 from contacts.views import contact
-from user.views import profile, register
+from user.views import address, profile, register
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -18,8 +18,9 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('profile/', profile, name='profile'),
+    path('address/', address, name='address'),
     path('cadastrar-produto/', productCreate, name='productCreate'),
-    path('carrinho/', include('cart.urls')),
+    path('cart/', include('cart.urls')),
 ]
 
 if settings.DEBUG:

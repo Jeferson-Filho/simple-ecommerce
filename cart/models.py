@@ -31,3 +31,4 @@ class Order(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=False, blank=False)
     payment = models.ForeignKey(PaymentDetails, on_delete=models.CASCADE, null=False, blank=False)
     shipping = models.ForeignKey(ShippingDetails, on_delete=models.CASCADE, null=False, blank=False)
+    total = models.FloatField(null=False, blank=False)
