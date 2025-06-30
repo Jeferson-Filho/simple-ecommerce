@@ -8,12 +8,9 @@
 <div style="display:flex; flex-direction:column; gap:30px; max-width:800px; margin:0 auto;">
     {% for post in news %}
     <div style="border-bottom:1px solid #ccc; padding-bottom:20px;">
-        {% if post.media %}
-        <img src="{{ post.media }}" alt="{{ post.name }}" style="width:100%; max-height:300px; object-fit:cover; border-radius:8px;">
-        {% endif %}
         <h3 style="margin-top:15px;">{{ post.name }}</h3>
-        <small style="color:gray;">Publicado em {{ post.post_date|date:"d/m/Y H:i" }}</small>
-        <a href="{% url 'post' post.id %}" style="color:#007BFF; text-decoration:none;">Leia mais</a>
+        <small style="color:gray;">Publicado em {{ post.post_date|date:"d/m/Y H:i" }}</small><br>
+        <a href="{% url 'post' post.id %}" style="color:#007BFF; text-decoration:none; display:inline-block; margin-top:4px;">Leia mais</a>
     </div>
     {% empty %}
     <p>Nenhuma notícia encontrada.</p>

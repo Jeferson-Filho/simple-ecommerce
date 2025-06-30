@@ -20,15 +20,16 @@
 
       <div class="dropdown" id="profileDropdown">
         {% if user.is_authenticated %}
-          <p style="margin-bottom: 10px;">Olá, {{ user.username }}!</p>
+          <p style="margin-top: 10px; margin-bottom: 20px;">Olá, {{ user.username }}!</p>
           {% if user.is_staff %}
             <a href="{% url 'productCreate' %}">Cadastrar produtos</a>
             <a href="{% url 'createPost' %}">Cadastrar notícias</a>
+          {% else %}
+            <a href="{% url 'profile' %}">Meu Perfil</a>
+            <a href="{% url 'address' %}">Meu Endereço</a>
+            <a href="{% url 'cart' %}">Meu Carrinho</a>
+            <a href="{% url 'orders' %}">Meus Pedidos</a>
           {% endif %}
-          <a href="{% url 'profile' %}">Meu Perfil</a>
-          <a href="{% url 'address' %}">Meu Endereço</a>
-          <a href="{% url 'cart' %}">Meu Carrinho</a>
-          <a href="{% url 'orders' %}">Meus Pedidos</a>
           <a href="{% url 'logout' %}?next={{ request.path }}">Sair</a>
         {% else %}
           <form method="post" action="">
