@@ -46,7 +46,7 @@ Além do design centrado no usuário, a aplicação enfatiza a privacidade de da
 #### Diagrama de Arquitetura (MVC)
 O projeto segue o padrão **MVC (Model-View-Controller)**, conforme a arquitetura do Django:
 
--- Colocar imagem MVC --
+![Django_MVC](https://github.com/user-attachments/assets/e7332b4d-a55a-4478-87f0-10f7084377ae)
 
 - **Model:** Representa as estruturas de dados e regras de negócio (ex: User, Product, Order, Post).
 - **View:** Controla o fluxo da aplicação, processa requisições, manipula dados e retorna respostas.
