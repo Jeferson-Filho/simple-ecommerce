@@ -1,41 +1,36 @@
 <a id="readme-top"></a>
 
 <div align="center">
-  <h1 align="center">User-Centric eCommerce</h1>
+  <h1 align="center">TUG Tag eCommerce</h1>
 </div>
 
-<!-- TABLE OF CONTENTS -->
+<!-- SUMÁRIO -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Sumário</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#sobre-o-projeto">Sobre o Projeto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#tecnologias-utilizadas">Tecnologias Utilizadas</a></li>
+        <li><a href="#arquitetura">Arquitetura</a></li>
+        <li><a href="#instalação">Instalação</a></li>
+        <li><a href="#funcionalidades-principais">Funcionalidades Principais</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributors">Contributors</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contribuidores">Contribuidores</a></li>
+    <li><a href="#contato">Contato</a></li>
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
-A modern and responsive eCommerce web application focused on usability and user experience. This project aims to deliver a fluid and intuitive navigation interface, adaptable to various devices, ensuring accessibility across different age groups and levels of digital literacy.
+<!-- SOBRE O PROJETO -->
+## Sobre o Projeto
+Uma aplicação web de eCommerce moderna e responsiva, focada em usabilidade e experiência do usuário. Este projeto visa oferecer uma navegação fluida e intuitiva, adaptável a diversos dispositivos, garantindo acessibilidade para diferentes faixas etárias e níveis de letramento digital.
 
-Beyond user-centric design, the application emphasizes data privacy and legal compliance, aligning with regulations such as the LGPD.
+Além do design centrado no usuário, a aplicação enfatiza a privacidade de dados e conformidade legal, alinhando-se a regulamentações como a LGPD.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-### Built With
-
+### Tecnologias Utilizadas
 ![HTML][HTML-shield]
 ![CSS][CSS-shield]
 ![JavaScript][JavaScript-shield]
@@ -45,127 +40,172 @@ Beyond user-centric design, the application emphasizes data privacy and legal co
 
 [![PostgreSQL][PostgreSQL-shield]][PostgreSQL-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-<!-- GETTING STARTED -->
-## Getting Started
-### Installation
+### Arquitetura
+#### Diagrama de Arquitetura (MVC)
+O projeto segue o padrão **MVC (Model-View-Controller)**, conforme a arquitetura do Django:
 
-1. Clone the repository:
+-- Colocar imagem MVC --
+
+- **Model:** Representa as estruturas de dados e regras de negócio (ex: User, Product, Order, Post).
+- **View:** Controla o fluxo da aplicação, processa requisições, manipula dados e retorna respostas.
+- **Template:** Responsável pela apresentação (HTML/CSS/JS) exibida ao usuário.
+
+#### Principais Módulos
+- **app:**  
+  Módulo principal, gerencia a página inicial, base de templates e configurações globais.
+
+- **blog:**  
+  Gerencia as notícias e posts do blog. Permite:
+  * Criar, listar e visualizar notícias.
+
+- **cart:**  
+  Controla o fluxo de compra do usuário.
+  Responsável pelo:
+  * Carrinho de compras
+  * Pedidos
+  * Checkout e integração de pagamento.
+
+- **contacts:**  
+  Gerencia o formulário de contato, recebendo dúvidas, sugestões e reclamações dos usuários.
+
+- **products:**  
+  Gerencia o catálogo de produtos
+  Permite:
+  * Cadastro e listagemd de produtos
+  * Exibir detalhes de cada produto.
+
+- **user:**  
+  Gerencia informações pessoais do usuário.
+  Permite:
+  * Cadastro
+  * Autenticação
+  * Gerenciamento do perfil e endereços.
+
+#### Integração Externa: Mercado Pago
+O sistema está integrado à API do **Mercado Pago: CheckoutBricks** para processar pagamentos via Pix inicialmente, podendo ser expandido para permitir geração de boletos.
+- Ao finalizar a compra, a aplicação se comunica com a API do Mercado Pago, gera um QR Code Pix e exibe para o usuário.
+- O fluxo de pagamento é seguro e segue as melhores práticas de integração, utilizando tokens de acesso e ambiente de sandbox para testes.
+- O sistema está preparado para produção, bastando trocar as credenciais para o ambiente real.
+
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+
+### Instalação
+1. Clone o repositório:
 ```bash
 git clone https://github.com/Jeferson-Filho/simple-ecommerce.git
 cd simple-ecommerce
 ```
 
-2. Create and activate a virtual environment:
+2. Crie e ative um ambiente virtual:
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate    # Windows
 ```
 
-3. Install dependencies:
+3. Instale as dependências:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Configure database in `settings.py`
+4. Configure o banco de dados em `settings.py`
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'database',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
 
-5. Run migrations:
+5. Execute as migrações:
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. Start the development server:
+6. Inicie o servidor de desenvolvimento:
 ```bash
 python manage.py runserver
 ```
 
-7. Access the app:
+7. Acesse o aplicativo:
 - App: http://127.0.0.1:8000/
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-<!-- ROADMAP -->
-## Roadmap
-### 1. Planning and Setup
-- [X] Create Python virtual environment  
-- [X] Install Django and dependencies (`psycopg2`, etc.)  
-- [X] Initialize Django project and main app (`app`)  
-- [X] Connect to PostgreSQL database  
-- [X] Set up `.gitignore`, `requirements.txt`, and Git versioning  
-- [X] Structure project folders: `templates/`, `static/`
+### Funcionalidades Principais
 
+#### Fluxo do Usuário
 
-### 2. Authentication and User Management
-- [ ] User registration, login, and logout  
-- [ ] Password reset via email  
-- [ ] Distinguish user and admin permissions  
-- [ ] Route protection middleware
+- **Cadastro:**  
+  O usuário pode se cadastrar pelo menu de login/cadastro. Após o cadastro, é redirecionado para a página inicial.
 
+- **Login:**  
+  Após cadastrar, o usuário pode efetuar login na plataforma e terá acesso ao menu de opções do usuário.
 
-### 3. Product Management
-- [ ] Product modeling (name, description, price, store, image)  
-- [ ] CRUD operations via admin  
-- [ ] Store updates
-- [ ] Product detail page
+- **Edição de informações pessoais:**  
+  O usuário pode editar suas informações cadastradas e também o endereço. Ter um endereço cadastrado é obrigatório para finalizar compras.
 
+- **Visualizar produtos:**  
+  Clicando em "Produtos", o usuário é levado à página de listagem de produtos. Ao clicar em um card de produto, é redirecionado para a página de detalhes, onde pode ver mais informações e adicionar uma quantidade desejada ao carrinho.
 
-### 4. Shopping Cart and Orders
-- [ ] Add/remove items from cart  
-- [ ] Clear cart  
-- [ ] Create order from cart  
-- [ ] Cancel order
+- **Adicionar ao carrinho:**  
+  Ao clicar em "Adicionar ao carrinho", a quantidade selecionada do produto é adicionada ao carrinho.
 
+- **Adicionar novos produtos ao carrinho:**  
+  O usuário pode navegar por outros produtos e adicionar diferentes itens ao mesmo carrinho, desde que não tenha finalizado a compra.
 
-### 5. Shipping and Address Management
-- [ ] Register and edit delivery addresses
-- [ ] Freight calculation (flat or based on CEP code range) (optional)
+- **Ver o carrinho:**  
+  No menu do perfil, em "Meu carrinho", o usuário visualiza todos os itens adicionados.
 
+- **Finalizar a compra:**  
+  Na página do carrinho, ao clicar em "Finalizar Compra", o usuário é redirecionado para a página de checkout, onde é exibido um QR Code Pix para efetuar o pagamento (apenas para teste no momento).
 
-### 6. Payment Simulation
-- [ ] Order status updates  
-- [ ] Payment receipt generation
-- [ ] Payment simulation (credit card, bank slip, etc.) (optional)
+- **Visualizar pedidos:**  
+  No menu do usuário, em "Meus pedidos", o usuário vê a lista de pedidos realizados. Ao clicar no número do pedido, vê os detalhes da compra.
 
+- **Detalhes do pedido:**  
+  Na página de detalhes do pedido, ao clicar no nome do produto, o usuário é levado à página do produto. Ao clicar em "Voltar para pedidos", retorna à listagem de pedidos.
 
-### 7. Blog and Posts
-- [ ] CRUD for posts (admin and users)  
-- [ ] Post detail page  
-- [ ] Edit and delete posts
+- **Enviar mensagem:**  
+  No footer, ao clicar em "Contato", o usuário acessa um formulário para enviar uma mensagem para o e-mail do sistema.
 
+- **Ver notícias:**  
+  No menu superior, em "Notícias", o usuário acessa a listagem de notícias. Clicando em "Leia Mais", vê a notícia completa.
 
-### 8. Product Catalog and Search
-- [ ] Sorting  products by name or price
-- [ ] Search field for name 
-- [ ] Dynamic results display
+- **Logout:**  
+  No menu do usuário, ao clicar em "Logout", o usuário encerra a sessão e retorna para a página anterior.
 
+---
 
-### 9. Admin Dashboard
-- [ ] Update list of store
-- [ ] Update list of products
-- [ ] Create posts and produts
+#### Fluxo do Administrador
 
-### 10. Frontend and UI
-- [ ] Layout using pure HTML, CSS, and JS  
-- [ ] Reusable components (header, footer, cards)  
-- [ ] Responsive design for mobile/tablet  
-- [ ] JavaScript interactivity (modals, validation, dynamic cart)
+- **Cadastrar produtos:**  
+  No menu do admin, em "Cadastrar produtos", o administrador acessa um formulário para cadastrar novos produtos no sistema.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- **Cadastrar notícias:**  
+  No menu do admin, em "Cadastrar notícias", o administrador acessa um formulário para postar novas notícias no blog.
 
-<!-- CONTRIBUTING -->
-## Contributors
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-<a href="https://github.com/Jeferson-Filho/ChestXRayClassification/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Jeferson-Filho/ChestXRayClassification" alt="contrib.rocks image" />
+<!-- CONTRIBUIDORES -->
+## Contribuidores
+
+<a href="https://github.com/Jeferson-Filho/simple-ecommerce/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Jeferson-Filho/simple-ecommerce" alt="contrib.rocks image" />
 </a>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-<!-- CONTACT -->
-## Contact
+<!-- CONTATO -->
+## Contato
 
 Caio Bolhalter <br>
 [![LinkedIn][linkedin-shield]][caio-linkedin-url]
@@ -173,9 +213,9 @@ Caio Bolhalter <br>
 Jeferson Filho <br>
 [![LinkedIn][linkedin-shield]][jeferson-linkedin-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-<!-- MARKDOWN LINKS & IMAGES -->
+<!-- LINKS & IMAGENS MARKDOWN -->
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
@@ -188,7 +228,6 @@ Jeferson Filho <br>
 [Django-url]: https://www.djangoproject.com/
 [PostgreSQL-shield]: https://img.shields.io/badge/postgresql-316192?style=for-the-badge&logo=postgresql&logoColor=white
 [PostgreSQL-url]: https://www.postgresql.org/docs/current/app-psql.html
-
 
 <!-- -------------------------------------------------------------------------------- -->
 [caio-linkedin-url]: https://www.linkedin.com/in/caio-bohlhalter-de-souza-202646232/
