@@ -146,42 +146,67 @@ python manage.py runserver
 
 - **Cadastro:**  
   O usuário pode se cadastrar pelo menu de login/cadastro. Após o cadastro, é redirecionado para a página inicial.
+  ![Cadastro_1](https://github.com/user-attachments/assets/80ba6368-bc89-417a-adfa-820ba3619faa)
+  ![Cadastro_2](https://github.com/user-attachments/assets/4f536787-bd3d-4cca-b5a0-a6aec5105a32)
 
 - **Login:**  
   Após cadastrar, o usuário pode efetuar login na plataforma e terá acesso ao menu de opções do usuário.
+  ![Login_2](https://github.com/user-attachments/assets/7aefb24c-5ca7-4313-8a95-55eb17e40988)
+  ![Login_1](https://github.com/user-attachments/assets/8ccae598-7b82-47ea-a6ef-62d007613eb8)
 
 - **Edição de informações pessoais:**  
   O usuário pode editar suas informações cadastradas e também o endereço. Ter um endereço cadastrado é obrigatório para finalizar compras.
+  ![Info_Pessoal_1](https://github.com/user-attachments/assets/0c4002b7-c19e-448a-aa7e-3ab8eb77cf8c)
+  ![Info_Pessoal_2](https://github.com/user-attachments/assets/4431c35f-0e8f-43de-b038-1bad1bf9032d)
+
 
 - **Visualizar produtos:**  
   Clicando em "Produtos", o usuário é levado à página de listagem de produtos. Ao clicar em um card de produto, é redirecionado para a página de detalhes, onde pode ver mais informações e adicionar uma quantidade desejada ao carrinho.
+  ![Produtos_2](https://github.com/user-attachments/assets/1bca600f-0880-4534-9e7f-36027f12af18)
+  ![Produtos_1](https://github.com/user-attachments/assets/c28a8395-5326-434f-94df-8e85f461832e)
 
 - **Adicionar ao carrinho:**  
   Ao clicar em "Adicionar ao carrinho", a quantidade selecionada do produto é adicionada ao carrinho.
+  ![Detalhes_Produto_1](https://github.com/user-attachments/assets/3768ff74-933b-4703-acea-6289c41096a6)
+  ![Detalhes_Produto_2](https://github.com/user-attachments/assets/ea384e7a-efcc-42a0-8a06-feb99260fa9a)
+  ![Detalhes_Produto_3](https://github.com/user-attachments/assets/f5328199-a652-46e6-8d08-e1299e9ff9e5)
 
 - **Adicionar novos produtos ao carrinho:**  
   O usuário pode navegar por outros produtos e adicionar diferentes itens ao mesmo carrinho, desde que não tenha finalizado a compra.
 
 - **Ver o carrinho:**  
   No menu do perfil, em "Meu carrinho", o usuário visualiza todos os itens adicionados.
+  ![Carrinho_2](https://github.com/user-attachments/assets/aa1b2795-7848-4539-9f60-2e07c0ef1c82)
 
 - **Finalizar a compra:**  
   Na página do carrinho, ao clicar em "Finalizar Compra", o usuário é redirecionado para a página de checkout, onde é exibido um QR Code Pix para efetuar o pagamento (apenas para teste no momento).
+  ![Carrinho_1](https://github.com/user-attachments/assets/13766bf1-f967-4288-ae09-e116bfae8ee0)
+  ![Checkout_1](https://github.com/user-attachments/assets/aa48fc23-8530-4ee4-a712-92c6e5d74243)
 
 - **Visualizar pedidos:**  
   No menu do usuário, em "Meus pedidos", o usuário vê a lista de pedidos realizados. Ao clicar no número do pedido, vê os detalhes da compra.
+  ![Pedidos_1](https://github.com/user-attachments/assets/74b48952-d11d-47c7-ae7c-408197f3b5ac)
+  ![Pedidos_2](https://github.com/user-attachments/assets/26566078-b0ad-45c0-9dca-e4cc7a0b6571)
 
 - **Detalhes do pedido:**  
   Na página de detalhes do pedido, ao clicar no nome do produto, o usuário é levado à página do produto. Ao clicar em "Voltar para pedidos", retorna à listagem de pedidos.
+  ![Pedidos_3](https://github.com/user-attachments/assets/afad9697-1679-4c28-a5d3-426fd455e8d3)
+  ![Pedidos_4](https://github.com/user-attachments/assets/aa038c84-70f4-4ea7-a440-93654f4e023f)
 
 - **Enviar mensagem:**  
   No footer, ao clicar em "Contato", o usuário acessa um formulário para enviar uma mensagem para o e-mail do sistema.
+  ![Contato_1](https://github.com/user-attachments/assets/fbd04f43-e2d6-49a4-9481-f6596ca726c5)
+  ![Contato_2](https://github.com/user-attachments/assets/d584af3c-8492-440b-bbe6-7af34289a747)
 
 - **Ver notícias:**  
   No menu superior, em "Notícias", o usuário acessa a listagem de notícias. Clicando em "Leia Mais", vê a notícia completa.
+  ![Notícias_1](https://github.com/user-attachments/assets/bbe41b37-7ac9-4a47-8c1e-ec76608ca8ec)
+  ![Notícias_2](https://github.com/user-attachments/assets/39c0e896-a40d-4e59-84a0-7b21bb361f99)
+  ![Notícias_3](https://github.com/user-attachments/assets/3f810559-5ea7-4724-b409-04745c84c114)
 
 - **Logout:**  
   No menu do usuário, ao clicar em "Logout", o usuário encerra a sessão e retorna para a página anterior.
+  ![Logout_1](https://github.com/user-attachments/assets/41b55703-2d0c-425e-81e7-9137ee9d533e)
 
 ---
 
@@ -189,9 +214,13 @@ python manage.py runserver
 
 - **Cadastrar produtos:**  
   No menu do admin, em "Cadastrar produtos", o administrador acessa um formulário para cadastrar novos produtos no sistema.
+  ![Cadastrar_Produtos_1](https://github.com/user-attachments/assets/5567d7cf-998c-48f5-9bd7-896867659a42)
+  ![Cadastrar_Produtos_2](https://github.com/user-attachments/assets/aeb51cf7-db93-45f8-b05a-9a916976ace4)
 
 - **Cadastrar notícias:**  
   No menu do admin, em "Cadastrar notícias", o administrador acessa um formulário para postar novas notícias no blog.
+  ![Cadastrar_Noticias_1](https://github.com/user-attachments/assets/4ba37779-5da8-4e85-a2d9-a0b75759bbe7)
+  ![Cadastrar_Noticias_2](https://github.com/user-attachments/assets/7ab53311-65aa-4370-8931-a545408a08a7)
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
